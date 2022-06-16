@@ -1,0 +1,67 @@
+{
+  "message": [{
+    "goods_id": 57444,
+    "goods_name": "创维（Skyworth）42X6 42英寸10核智能酷开网络平板液晶电视（黑色）"
+  }, {
+    "goods_id": 57437,
+    "goods_name": "创维（Skyworth）55V6 55英寸 4色4K超高清 18核 智能网络液晶电视 银色"
+  }, {
+    "goods_id": 57434,
+    "goods_name": "创维（Skyworth）60V8E 60英寸 4色4K 21核金属机身超高清智能网络液晶电视（金色）"
+  }, {
+    "goods_id": 57430,
+    "goods_name": "创维（Skyworth）65M9 65英寸15核HDR 4K超高清智能电视"
+  }, {
+    "goods_id": 57429,
+    "goods_name": "创维（Skyworth）50M9 50英寸15核HDR 4K超高清智能电视"
+  }, {
+    "goods_id": 57426,
+    "goods_name": "创维（Skyworth）55M9 55英寸15核HDR 4K超高清智能电视M7"
+  }, {
+    "goods_id": 57406,
+    "goods_name": "凤凰星通ZC10车载充电器一拖二带电压检测金属安全锤式三星苹果手机点烟器双USB车充 明亮金"
+  }, {
+    "goods_id": 57404,
+    "goods_name": "沿途(YANTU)点烟器一拖三多功能车用转换插头12-24V汽车充插座一拖二带USB车载充电器 升级无线款黑色"
+  }, {
+    "goods_id": 57396,
+    "goods_name": "紫米ZMI 小米QC3.0快充车充 5V2.4A双USB智能输出 一拖二手机平板通用汽车充电器 AP821 银色"
+  }, {
+    "goods_id": 57395,
+    "goods_name": "英才星 车载充电器 电源转换器USB车充插头一拖二汽车一拖三点烟器 HSC-107D升级版"
+  }, {
+    "goods_id": 57393,
+    "goods_name": "方正科技(ifound) 2孔2USB车载点烟器扩充器24V FZ-24 1/盒"
+  }, {
+    "goods_id": 57389,
+    "goods_name": "凤凰星通ZC10汽车点烟器一拖二车载充电器带电压检测金属安全锤式双USB车充多功能太空灰"
+  }, {
+    "goods_id": 57388,
+    "goods_name": "先科 多功能带线车载充电器 灰色 AY-T52S 1/盒"
+  }, {
+    "goods_id": 57385,
+    "goods_name": "英才星HSC 车载充电器 汽车 车充 一拖三点烟器一拖二充电器 多功能车载逆变器12V转220V车用电源转换器"
+  }, {
+    "goods_id": 57384,
+    "goods_name": "公牛(BULL) GN-U112C 车载充电器 汽车用点烟器车充双USB多功能转接头一拖二 白色"
+  }, {
+    "goods_id": 57383,
+    "goods_name": "高欣车载逆变器车用转换器多功能充电器12V转220V大功率 负离子氧吧电源带4USB"
+  }, {
+    "goods_id": 57382,
+    "goods_name": "Accnic爱兰P1 车载MP3 蓝牙手机音乐播放器 免提语音导航 电压检测 汽车用多功能点烟器式 车载充电器 黑银色"
+  }, {
+    "goods_id": 57377,
+    "goods_name": "沿途(YANTU)车载充电器 一拖二usb汽车用12-24V多功能车充头智能手机快充点烟器 黑色"
+  }, {
+    "goods_id": 57376,
+    "goods_name": "淘尔杰tej二合一数据线多功能多头安卓苹果加长手机一拖二电源转换器充电器 1米长"
+  }, {
+    "goods_id": 57371,
+    "goods_name": "麦车饰 汽车手机充电线数据线车家两用 1M 苹果安卓通用二合一USB车载充电数据线"
+  }],
+  "meta": {
+    "msg": "获取成功",
+    "status": 200
+  }
+}

@@ -1,5 +1,9 @@
 <template>
 	<view>
+    <!-- 搜索区域 -->
+    <view class="search-box">
+      <my-search @click="goSearch"></my-search>
+    </view>
 		<!-- 轮播图区域 -->
 		<swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" :circular="true">
 			<swiper-item v-for="(item,index) in swiperlist" :key="index">
@@ -108,12 +112,25 @@
 					})
 
 				}
-			}
+			},
+      // 跳转到搜索页面
+      goSearch(){
+        uni.navigateTo({
+          url: '/subpkg/search/search',
+        });
+      }
 		}
 	}
 </script>
 
 <style lang="scss">
+  .search-box{
+    // 吸顶
+    position: sticky;
+    top: 0;
+    // 避免被覆盖
+    z-index: 999;
+  }
 	swiper {
 
 		.swiper-item,

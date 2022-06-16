@@ -14,3 +14,15 @@
     
     // this.scrollTop = 0;//赋值前后值一样 不会发生页面更新
     this.scrollTop == 0? 1:0;
+    
+    
+uniapp内置组件 https://uniapp.dcloud.net.cn/component/uniui/uni-icons.html
+
+
+
+搜索区域吸顶
+    // 吸顶
+    position: sticky;
+    top: 0;
+    // 避免被覆盖
+    z-index: 999;
