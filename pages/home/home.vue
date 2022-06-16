@@ -27,7 +27,7 @@
 					<navigator class="left-img-box" :url="item.product_list[0].url">
 						<image :style="{width:item.product_list[0].image_width+'rpx'}"
 							:src="item.product_list[0].image_src" mode="widthFix"></image>
-						</navigator>>
+						</navigator>
 						<!-- 右侧四个图片 -->
 						<view class="right-img-box">
 							<navigator class="right-img-item" v-for="(img,num) in item.product_list" :key="num"
