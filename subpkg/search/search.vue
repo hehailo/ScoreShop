@@ -7,6 +7,7 @@
       </uni-search-bar>
 
     </view>
+
     <!-- 搜索建议列表 -->
     <view class="sugg-list" v-if="searchValue.trim() != ''">
       <view class="sugg-item" @click="gotoDetail(item)" v-for="(item, i) in searchResults" :key="i">
@@ -16,18 +17,19 @@
         <uni-icons type="arrowright" size="16"></uni-icons>
       </view>
     </view>
+
     <!-- 搜索历史区域 -->
     <view class="history-box" v-else>
       <!-- 标题 -->
       <view class="history-title">
         <text>搜索历史</text>
-        <uni-icons type="trash" size="17" >
+        <uni-icons type="trash" size="17"   @click="clearHistories">
         </uni-icons>
       </view>
       <!-- 列表 -->
       <view class="history-list">
         <!-- 搜索历史记录 -->
-      <uni-tag :text="item" v-for="(item, i) in historylist" :key="i">
+      <uni-tag :text="item" v-for="(item, i) in histories" :key="i">
       </uni-tag>
       </view>
     </view>
@@ -47,7 +49,7 @@
         // 搜索的结果列表
         searchResults: [],
         // 搜索历史的数组
-        historylist: ["a感受过是干啥", "b", "d"]
+        historylist: ["a", "app", "apple"]
       };
     },
     // watch:{
@@ -61,6 +63,17 @@
     //   }
 
     // },
+    computed:{
+        histories(){
+          return [...this.historylist].reverse()
+        }
+    },
+    onLoad() {
+      // 初始化读取搜索历史记录、
+
+      console.log("111",uni.getStorageSync("keywords"));
+      this.historylist = JSON.parse(uni.getStorageSync("keywords") || "[]")
+    },
     methods: {
       // 输入事件 防抖
       input: debounce(function(event) {
@@ -74,6 +87,7 @@
           this.searchResults = []
           return
         }
+        console.log("执行");
         const {
           data: res
         } = await uni.$http.get('/api/public/v1/goods/qsearch', {
@@ -88,6 +102,21 @@
         uni.navigateTo({
           url: '/subpkg/goods_detail/goods_detail?goods_id=' + item.goods_id
         })
+      },
+      // 清除搜索历史
+      clearHistories(){
+        this.historylist = [];
+        uni.setStorageSync("keywords","[]")
+      },
+      // 存储搜索记录
+      saveSearchHistory(){
+        let set = new Set(this.historylist);
+        // 相当于一遍去重操作
+        set.delete(this.searchValue);
+        set.add(this.searchValue)
+        this.historylist = Array.from(set);
+        // 搜索历史记录的持久化
+        uni.setStorageSync("keywords",JSON.stringify(this.historylist))
       }
     }
   }
