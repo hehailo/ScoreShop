@@ -103,14 +103,14 @@ export default {
         urls: this.goods_info.pics.map((x) => x.pics_big),
       });
     },
-	onClick(e){
-		console.log(e);
-		if (e.content.text === '购物车') {
-			uni.switchTab({
-				url:"/pages/cart/cart"
-			})
-		}
-	}
+    onClick(e) {
+      console.log(e);
+      if (e.content.text === "购物车") {
+        uni.switchTab({
+          url: "/pages/cart/cart",
+        });
+      }
+    },
   },
 };
 </script>
