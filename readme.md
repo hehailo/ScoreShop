@@ -81,3 +81,47 @@
       this.historylist = [];
       uni.setStorageSync("keywords","[]")
     },
+    
+###  过滤器 处理 商品价格
+    // 过滤器 处理商品价格 保留两位小数
+    tofixed(num){
+      return Number(num).toFixed(2)
+    } 
+    
+###  上拉加载更多商品
+
+    1.配置下拉触底距离
+    2.事件 onReachBottom
+      事件处理中 页号+1
+      请求数据
+        拼接新旧数据
+    
+    节流阀
+      正在请求数据的时候，不发起额外的请求
+      isloading=true  正在请求数据
+      
+    判断数据是否已经加载完毕
+      1、 有总条数
+        方法1：当前页号* 每页数据 > 总条数
+        方法2：存储的记录条数数据 > 总条数
+      2、判断本次请求得到的记录条数 < 请求的每页数据 或者  本次没有返回数据
+      
+      
+###  下拉刷新事件的处理
+    1、在 pages.json 配置文件中，为当前的页面单独开启下拉刷新效果
+
+      "enablePullDownRefresh": true,
+      "backgroundColor": "#F8F8F8"
+          2、监听页面的 onPullDownRefresh 事件处理函数，重置关键数据
+      onPullDownRefresh() {
+        // 重置关键数据
+        this.queryObj.pagenum = 1
+        this.total = 0
+        this.isloading = false
+        this.goodsList = []
+        ...
+      }
+      
+    3、发送请求 获取第一页数据
+      传递回调 关闭下拉刷新的效果
+      this.getGoodsList(() => uni.stopPullDownRefresh())
