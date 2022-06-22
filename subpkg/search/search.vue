@@ -29,7 +29,7 @@
       <!-- 列表 -->
       <view class="history-list">
         <!-- 搜索历史记录 -->
-      <uni-tag :text="item" v-for="(item, i) in histories" :key="i">
+      <uni-tag :text="item" v-for="(item, i) in histories" :key="i" @click="gotoGoodsList(item)">
       </uni-tag>
       </view>
     </view>
@@ -117,6 +117,12 @@
         this.historylist = Array.from(set);
         // 搜索历史记录的持久化
         uni.setStorageSync("keywords",JSON.stringify(this.historylist))
+      },
+      // 跳转商品列表页面
+      gotoGoodsList(item){
+        uni.navigateTo({
+          url:'/subpkg/goods_list/goods_list?query='+item
+        })
       }
     }
   }
