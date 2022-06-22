@@ -112,7 +112,8 @@
 
       "enablePullDownRefresh": true,
       "backgroundColor": "#F8F8F8"
-          2、监听页面的 onPullDownRefresh 事件处理函数，重置关键数据
+      
+    2、监听页面的 onPullDownRefresh 事件处理函数，重置关键数据
       onPullDownRefresh() {
         // 重置关键数据
         this.queryObj.pagenum = 1
@@ -125,3 +126,43 @@
     3、发送请求 获取第一页数据
       传递回调 关闭下拉刷新的效果
       this.getGoodsList(() => uni.stopPullDownRefresh())
+
+###  如何实现大图预览效果
+
+	图片绑click  定义priview事件处理
+	调用uni.previewImage()方法预览图片
+	
+		// 调用 uni.previewImage 方法预览图片
+		uni.previewImage({
+			current:i,
+			urls:this.goods_info.pics.map((x)=>x.pics_big)
+		})
+		
+### 渲染html字符串
+
+	<uni-tag :text="item" v-for="(item, i) in histories" :key="i" @click="gotoGoodsList(item)">
+	</uni-tag>
+	
+	去除图片底部空白
+	
+	// 去除图片底部空白
+	  res.message.goods_introduce = res.message.goods_introduce
+	    .replace(/<img /g, '<img style="display:block;" ')
+	    .replace(/webp/g, "jpg");
+	
+	
+###  解决闪烁问题
+ 
+	原因；数据还没有返回  是{} 
+	会展示undefiend
+	
+	使用v-if来解决
+	
+###  使用goodsnav来展示下方商品购物车和按钮
+
+
+
+	
+	
+	
+	
