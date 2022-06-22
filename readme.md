@@ -1,3 +1,24 @@
+### git有关教程
+
+1、基于 master 分支在本地创建 search 子分支，用来开发搜索相关的功能：
+    git checkout -b search
+
+2、将 search 分支进行本地提交：
+    git add .
+    git commit -m "完成了搜索功能的开发"
+
+3、将本地的 search 分支推送到码云：
+    git push -u origin search
+
+4、将本地 search 分支中的代码合并到 master 分支：
+    git checkout master
+    git merge search
+    git push
+    
+5、删除本地的 search 分支：
+    git branch -d search
+
+
 ###  问题一 
 ###  如何设置导航条字体大小
 ###  
