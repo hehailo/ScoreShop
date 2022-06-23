@@ -1,5 +1,6 @@
 <template>
   <view v-if="goods_info.goods_name" class="goods-deatil-container">
+    
     <!-- 商品轮播图区域 -->
     <swiper
       :indicator-dots="true"
@@ -12,7 +13,6 @@
         <image :src="item.pics_big" @click="priviewImage(i)"></image>
       </swiper-item>
     </swiper>
-    <view>{{ cart.length }}</view>
 
     <!-- 商品信息区域 -->
     <view class="goods-info-box">

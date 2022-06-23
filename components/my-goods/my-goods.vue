@@ -2,6 +2,7 @@
   <view class="good-item">
     <!-- 左侧盒子 图片 -->
     <view class="goods-item-left">
+      <radio :checked="goods.goods_state" color="#C00000" v-if="showRadio"></radio>
       <image
         class="goods-pic"
         :src="goods.goods_small_logo || defaultPic"
@@ -26,6 +27,11 @@ export default {
       type: Object,
       default: {},
     },
+    showRadio:{
+      // 控制单选那妞的显示与隐藏
+      type: Boolean,
+      default: false,
+    }
   },
   filters: {
     // 过滤器 处理商品价格 保留两位小数
@@ -50,10 +56,12 @@ export default {
   border-bottom: 1px solid lightgray;
   .goods-item-left {
     margin-right: 10px;
-    .goods-pic {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .goods-pic{
       width: 100px;
       height: 100px;
-      // 去除图片底部留白
       display: block;
     }
   }
