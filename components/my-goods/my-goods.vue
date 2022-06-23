@@ -27,11 +27,11 @@ export default {
       default: {},
     },
   },
-  filters:{
+  filters: {
     // 过滤器 处理商品价格 保留两位小数
-    tofixed(num){
-      return Number(num).toFixed(2)
-    }
+    tofixed(num) {
+      return Number(num).toFixed(2);
+    },
   },
   data() {
     return {

@@ -12,6 +12,7 @@
         <image :src="item.pics_big" @click="priviewImage(i)"></image>
       </swiper-item>
     </swiper>
+    <view>{{ cart.length }}</view>
 
     <!-- 商品信息区域 -->
     <view class="goods-info-box">
@@ -48,7 +49,12 @@
 </template>
 
 <script>
+import { mapState, mapMutations, mapGetters } from "vuex";
 export default {
+  computed: {
+    ...mapState("m_cart", ["cart"]),
+    ...mapGetters("m_cart", ["total"]),
+  },
   data() {
     return {
       goods_info: {},
@@ -62,7 +68,7 @@ export default {
         {
           icon: "cart",
           text: "购物车",
-          info: 2,
+          info: 0,
         },
       ],
       buttonGroup: [
@@ -82,7 +88,19 @@ export default {
   onLoad(options) {
     this.getGoodsDetail(options.goods_id);
   },
+  watch: {
+    total:{
+      immediate:true,//立即执行
+      handler(newVal) {
+      let finRes = this.options.find((x) => x.text == "购物车");
+      if (finRes) {
+        finRes.info = newVal;
+      }
+    },
+    }
+  },
   methods: {
+    ...mapMutations("m_cart", ["addToCart"]),
     async getGoodsDetail(goods_id) {
       const { data: res } = await uni.$http.get("/api/public/v1/goods/detail", {
         goods_id,
@@ -109,6 +127,23 @@ export default {
         uni.switchTab({
           url: "/pages/cart/cart",
         });
+      }
+    },
+    buttonClick(e) {
+      if (e.content.text === "加入购物车") {
+        // 组织商品的信息对象
+        // { goods_id, goods_name, goods_price, goods_count, goods_small_logo, goods_state }
+        const goods = {
+          goods_id: this.goods_info.goods_id,
+          goods_name: this.goods_info.goods_name,
+          goods_price: this.goods_info.goods_price,
+          goods_count: 1,
+          goods_small_logo: this.goods_info.goods_small_logo,
+          goods_state: true,
+        };
+
+        // 调用 addToCart 方法
+        this.addToCart(goods);
       }
     },
   },
