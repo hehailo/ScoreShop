@@ -1,6 +1,5 @@
 <template>
   <view v-if="goods_info.goods_name" class="goods-deatil-container">
-    
     <!-- 商品轮播图区域 -->
     <swiper
       :indicator-dots="true"
@@ -89,15 +88,15 @@ export default {
     this.getGoodsDetail(options.goods_id);
   },
   watch: {
-    total:{
-      immediate:true,//立即执行
+    total: {
+      immediate: true, //立即执行
       handler(newVal) {
-      let finRes = this.options.find((x) => x.text == "购物车");
-      if (finRes) {
-        finRes.info = newVal;
-      }
+        let finRes = this.options.find((x) => x.text == "购物车");
+        if (finRes) {
+          finRes.info = newVal;
+        }
+      },
     },
-    }
   },
   methods: {
     ...mapMutations("m_cart", ["addToCart"]),
