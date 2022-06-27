@@ -1,12 +1,8 @@
 <template>
-  <view>
-    
+  <view class="cart-container" v-if="cart.length !== 0">
     <!-- 收货地址区域 -->
-    <my-address>
-      
-    </my-address>
-    
-    
+    <my-address> </my-address>
+
     <!-- 商品列表的标题区域 -->
     <view class="cart-title">
       <!-- 左侧的图标 -->
@@ -33,6 +29,14 @@
       </block>
     </uni-swipe-action>
 
+    <!-- 结算的区域 -->
+    <my-settle></my-settle>
+  </view>
+
+  <!-- 空白购物车区域 -->
+  <view class="empty-cart" v-else>
+    <image src="/static/cart_empty@2x.png" class="empty-img"></image>
+    <text class="tip-text">空空如也~</text>
   </view>
 </template>
 
@@ -41,7 +45,9 @@ import badgeMix from "@/mixins/tabbar-badge.js";
 import { mapState, mapMutations } from "vuex";
 import myGoods from "../../components/my-goods/my-goods.vue";
 export default {
-  components: { myGoods },
+  components: {
+    myGoods,
+  },
   mixins: [badgeMix],
   computed: {
     ...mapState("m_cart", ["cart"]),
@@ -59,7 +65,11 @@ export default {
     };
   },
   methods: {
-    ...mapMutations("m_cart", ["updateGoodsState", "updateGoodsCount","removeGoodsById"]),
+    ...mapMutations("m_cart", [
+      "updateGoodsState",
+      "updateGoodsCount",
+      "removeGoodsById",
+    ]),
     radioChangeHandler(e) {
       this.updateGoodsState(e);
     },
@@ -76,6 +86,14 @@ export default {
 </script>
 
 <style lang="scss">
+page {
+  background-color: white;
+}
+
+.cart-container {
+  padding-bottom: 50px;
+}
+
 .cart-title {
   height: 40px;
   display: flex;
@@ -86,6 +104,24 @@ export default {
   .cart-title-text {
     font-size: 14px;
     margin-left: 10px;
+  }
+}
+
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 150px;
+
+  .empty-img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .tip-text {
+    font-size: 12px;
+    color: gray;
+    margin-top: 15px;
   }
 }
 </style>

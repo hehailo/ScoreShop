@@ -42,8 +42,13 @@ export default {
     },
     //根据 Id 删除对应的商品
     removeGoodsById(state, goods_id) {
-      console.log("这里");
       state.cart = state.cart.filter((x) => x.goods_id !== goods_id);
+      // 持久化
+      this.commit("m_cart/saveToStorage");
+    },
+    // 改变全部商品的状态
+    updateAllGoodsState(state, status) {
+      state.cart.forEach((x) => (x.goods_state = status));
       // 持久化
       this.commit("m_cart/saveToStorage");
     },
@@ -55,6 +60,22 @@ export default {
       let c = 0;
       state.cart.forEach((x) => (c += x.goods_count));
       return c;
+    },
+    // 购物车中已勾选商品的总数量
+    checkedCount(state) {
+      // 中找到已选中的商品  统计数量
+      return state.cart
+        .filter((x) => x.goods_state)
+        .reduce((pre, cur) => {
+          return (pre += cur.goods_count);
+        }, 0);
+    },
+    // 已勾选商品的总价格
+    checkedGoodsAmount(state) {
+      return state.cart
+        .filter((x) => x.goods_state)
+        .reduce((pre, cur) => (pre += cur.goods_count * cur.goods_price), 0)
+        .toFixed(2);
     },
   },
 };

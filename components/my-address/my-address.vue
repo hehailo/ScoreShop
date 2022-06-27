@@ -62,7 +62,7 @@ export default {
     async chooseAddress() {
       // 调用小程序的api
       const [err, success] = await uni.chooseAddress().catch((err) => err);
-      console.log("err",err);
+      console.log("err", err);
       console.log("success", success);
       // 成功选择来收获地址
       if (err === null && success.errMsg === "chooseAddress:ok") {

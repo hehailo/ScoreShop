@@ -106,6 +106,9 @@ export default {
 </script>
 
 <style lang="scss">
+page {
+  background-color: white;
+}
 .scroll-view-container {
   display: flex;
 

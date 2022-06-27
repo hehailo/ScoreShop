@@ -141,6 +141,9 @@ export default {
 </script>
 
 <style lang="scss">
+page {
+  background-color: white;
+}
 .search-box {
   // 吸顶
   position: sticky;
@@ -180,7 +183,6 @@ swiper {
 
 .floor-img-box {
   display: flex;
-
   .right-img-box {
     display: flex;
     flex-wrap: wrap;
