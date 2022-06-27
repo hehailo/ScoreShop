@@ -1,15 +1,22 @@
 <template>
-  <view> 我的 </view>
+  <view> 
+    <my-userinfo v-if="token"></my-userinfo>
+    <my-login v-else></my-login>
+  </view>
 </template>
 
 <script>
 import badgeMix from "@/mixins/tabbar-badge.js";
+import {mapState} from "vuex"
 export default {
   mixins: [badgeMix],
   data() {
     return {};
   },
   methods: {},
+  computed:{
+    ...mapState("m_user",["token"])
+  }
 };
 </script>
 

@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapMutations,mapState } from "vuex";
 export default {
   name: "my-settle",
   data() {
@@ -29,10 +29,16 @@ export default {
       this.updateAllGoodsState(!this.isFullCheck);
     },
     // 点击结算按钮
-    settlement() {},
+    settlement() {
+      if (!this.checkedCount) return uni.$showMsg('请选择要结算的商品！')
+      if (!this.addstr)  return uni.$showMsg('请选择收货地址！')        
+      if(!this.token) return uni.$showMsg('请先登录！')
+    },
   },
   computed: {
     ...mapGetters("m_cart", ["checkedCount", "total", "checkedGoodsAmount"]),
+    ...mapGetters("m_user", ["addstr"]),
+    ...mapState("m_user", ["token"]),
     // 是否全选
     // checkedCount  已勾选商品总数
     // total 购物车商品总数
@@ -40,6 +46,7 @@ export default {
       return this.total == this.checkedCount;
     },
   },
+  
 };
 </script>
 
