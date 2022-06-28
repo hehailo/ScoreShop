@@ -16,23 +16,62 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations,mapState } from "vuex";
+import { mapGetters, mapMutations, mapState } from "vuex";
 export default {
   name: "my-settle",
   data() {
-    return {};
+    return {
+      seconds: 3,
+    };
   },
   methods: {
     ...mapMutations("m_cart", ["updateAllGoodsState"]),
+    ...mapMutations("m_user", ["updateRedirectInfo"]),
     // 点击全选按钮
     changeAllState() {
       this.updateAllGoodsState(!this.isFullCheck);
     },
     // 点击结算按钮
     settlement() {
-      if (!this.checkedCount) return uni.$showMsg('请选择要结算的商品！')
-      if (!this.addstr)  return uni.$showMsg('请选择收货地址！')        
-      if(!this.token) return uni.$showMsg('请先登录！')
+      if (!this.checkedCount) return uni.$showMsg("请选择要结算的商品！");
+      if (!this.addstr) return uni.$showMsg("请选择收货地址！");
+      // if (!this.token) return uni.$showMsg('请先登录！')
+      if (!this.token) return this.delayNavigate();
+    },
+    delayNavigate() {
+      this.seconds = 3;
+      // 立即执行
+      this.showTips(this.seconds);
+      // 定时器执行
+      this.timer = setInterval(() => {
+        this.seconds--;
+        if (this.seconds <= 0) {
+          clearInterval(this.timer);
+          // 跳转页面
+          uni.switchTab({
+            url: "/pages/my/my",
+            success: () => {
+              this.updateRedirectInfo({
+                from: "/pages/cart/cart",
+                openType: "switchTab",
+              });
+            },
+          });
+
+          // 存入vuex
+          return;
+        }
+        this.showTips(this.seconds);
+      }, 1000);
+    },
+    showTips(times) {
+      // 展示框
+      uni.showToast({
+        icon: "none",
+        title: "请登录后再结算！" + times + "秒之后自动跳转到登录页",
+        mask: true, //防止点击穿透
+        duration: 1500,
+      });
     },
   },
   computed: {
@@ -46,7 +85,6 @@ export default {
       return this.total == this.checkedCount;
     },
   },
-  
 };
 </script>
 
@@ -77,7 +115,7 @@ export default {
   }
 
   .btn-settle {
-    background-color: #c00000;
+    background-color: #ff0000;
     height: 50px;
     color: white;
     line-height: 50px;

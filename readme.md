@@ -173,3 +173,43 @@
     
     占满全部区域
     flex:1;
+    
+    
+## 登录
+
+
+### 登录页面下方的椭圆
+      定位 + overflow：hiddden +  transform: translateY(50%); + 椭圆
+
+      .login-container {
+        height: 750rpx;
+        background-color: #F8F8F8;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+    
+        &::after {
+          content: ' ';
+          display: block;
+          width: 100%;
+          height: 40px;
+          background-color: white;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          border-radius: 100%;
+          transform: translateY(50%);
+        }
+    
+### 用户登录
+
+    固定写法： open-type="getUserInfo" @getuserinfo="XXXX"
+    <button type="primary" class="btn-login" open-type="getUserInfo" @getuserinfo="getUserInfo">
+
+
+###  倒计时跳转登录页面
+
+###  登录之后返回原来的页面
